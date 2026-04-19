@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=17 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://bouncer_limit.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://d2ntiplxftxlx" path="res://image.png" id="2_eow3j"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dp71722reaok1" path="res://floor.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dhr1e8ju5ugc6" path="res://target.gd" id="6_ryrav"]
 [ext_resource type="AudioStream" uid="uid://dr6t5jeo7ohub" path="res://SFX/throw.wav" id="7_j5wjh"]
+[ext_resource type="Script" uid="uid://cyonoitmupp61" path="res://ui.gd" id="9_hve3p"]
+[ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="9_vef74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
 size = Vector2(1274, 202)
@@ -84,6 +86,77 @@ texture = SubResource("PlaceholderTexture2D_eow3j")
 position = Vector2(49.5, 111)
 shape = SubResource("RectangleShape2D_j5wjh")
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_hve3p")
+
+[node name="Settings" type="PanelContainer" parent="UI/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_vef74")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UI/Settings"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="All" type="VBoxContainer" parent="UI/UI/Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="UI/UI/Settings/MarginContainer/All"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="UI/UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="UI/UI/Settings/MarginContainer/All/Options/Labels"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Master"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFX" type="Label" parent="UI/UI/Settings/MarginContainer/All/Options/Labels"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="UI/UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="UI/UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Master" type="HSlider" parent="UI/UI/Settings/MarginContainer/All/Options/Controls"]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+value = 50.0
+
+[node name="SFX" type="HSlider" parent="UI/UI/Settings/MarginContainer/All/Options/Controls"]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+value = 50.0
+
 [connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
 [connection signal="body_entered" from="BouncerLimit/Bouncer/Area2D" to="BouncerLimit/Bouncer/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
+[connection signal="value_changed" from="UI/UI/Settings/MarginContainer/All/Options/Controls/Master" to="UI/UI/Settings" method="_on_change"]
+[connection signal="value_changed" from="UI/UI/Settings/MarginContainer/All/Options/Controls/SFX" to="UI/UI/Settings" method="_on_change"]
