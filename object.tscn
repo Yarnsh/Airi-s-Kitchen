@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvic84evro6f6"]
+
+[ext_resource type="Script" uid="uid://cltp37ktjn51j" path="res://object.gd" id="1_l2ofb"]
+[ext_resource type="Script" uid="uid://b3cw4uvuft7xw" path="res://food_body.gd" id="2_3xuqs"]
+[ext_resource type="AudioStream" uid="uid://bkugwsbpv6f88" path="res://SFX/bounce.wav" id="3_dwaef"]
+[ext_resource type="AudioStream" uid="uid://b6cgoxhbls4qu" path="res://SFX/squish.wav" id="4_m11qq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
+radius = 18.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7jktm"]
+size = Vector2(32, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l2ofb"]
+size = Vector2(64, 16)
+
+[sub_resource type="Animation" id="Animation_l2ofb"]
+resource_name = "Bounce"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.09, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.7), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3xuqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xuqs"]
+_data = {
+&"Bounce": SubResource("Animation_l2ofb"),
+&"RESET": SubResource("Animation_3xuqs")
+}
+
+[node name="Food" type="Node2D"]
+script = ExtResource("1_l2ofb")
+
+[node name="Object" type="CharacterBody2D" parent="."]
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("2_3xuqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Object"]
+shape = SubResource("CircleShape2D_fc0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Object"]
+texture = SubResource("PlaceholderTexture2D_7jktm")
+
+[node name="SplatSprite" type="Sprite2D" parent="Object"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_l2ofb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Object"]
+libraries = {
+&"": SubResource("AnimationLibrary_3xuqs")
+}
+
+[node name="BounceSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dwaef")
+bus = &"SFX"
+
+[node name="SquashSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_m11qq")
+bus = &"SFX"

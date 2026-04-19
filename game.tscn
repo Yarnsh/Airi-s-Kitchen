@@ -1,0 +1,89 @@
+[gd_scene load_steps=15 format=3 uid="uid://eppk4lx7a2do"]
+
+[ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://bouncer_limit.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://d2ntiplxftxlx" path="res://image.png" id="2_eow3j"]
+[ext_resource type="Script" uid="uid://db3w2p84srpie" path="res://bouncer.gd" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://dfepl0xnrg575" path="res://bouncer_area.gd" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://dk7c5xgi83ek6" path="res://spawner.gd" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://dp71722reaok1" path="res://floor.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://dhr1e8ju5ugc6" path="res://target.gd" id="6_ryrav"]
+[ext_resource type="AudioStream" uid="uid://dr6t5jeo7ohub" path="res://SFX/throw.wav" id="7_j5wjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
+size = Vector2(1274, 202)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7jktm"]
+size = Vector2(2000, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fc0e3"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(64, 27.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eow3j"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
+size = Vector2(227, 350)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" type="Area2D" parent="."]
+position = Vector2(583, 620)
+script = ExtResource("5_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(3, 76)
+shape = SubResource("RectangleShape2D_ryrav")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+texture = SubResource("PlaceholderTexture2D_7jktm")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(585, 279)
+scale = Vector2(1.06, 1.06)
+texture = ExtResource("2_eow3j")
+
+[node name="BouncerLimit" type="Node2D" parent="."]
+position = Vector2(531, 415)
+script = ExtResource("1_e2o6t")
+
+[node name="Bouncer" type="Node2D" parent="BouncerLimit"]
+script = ExtResource("2_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="BouncerLimit/Bouncer"]
+texture = SubResource("PlaceholderTexture2D_fc0e3")
+
+[node name="Area2D" type="Area2D" parent="BouncerLimit/Bouncer"]
+position = Vector2(0, 47)
+collision_layer = 0
+script = ExtResource("3_fc0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BouncerLimit/Bouncer/Area2D"]
+position = Vector2(0, -64.75)
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(0, 394)
+script = ExtResource("4_fc0e3")
+
+[node name="ThrowSFX" type="AudioStreamPlayer" parent="Spawner"]
+stream = ExtResource("7_j5wjh")
+bus = &"SFX"
+
+[node name="Target" type="Area2D" parent="."]
+position = Vector2(1008, 102)
+script = ExtResource("6_ryrav")
+
+[node name="Sprite2D" type="Sprite2D" parent="Target"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_eow3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
+position = Vector2(49.5, 111)
+shape = SubResource("RectangleShape2D_j5wjh")
+
+[connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
+[connection signal="body_entered" from="BouncerLimit/Bouncer/Area2D" to="BouncerLimit/Bouncer/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
