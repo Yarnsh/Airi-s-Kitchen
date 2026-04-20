@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3wkbx5tcikpd"]
+
+[ext_resource type="Script" uid="uid://puq8d1a5m3m2" path="res://customer.gd" id="1_7tiyv"]
+[ext_resource type="Shader" uid="uid://b4b4pgsghqd7x" path="res://customer.gdshader" id="2_f7asb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gn8fi"]
+resource_local_to_scene = true
+shader = ExtResource("2_f7asb")
+shader_parameter/light = 1.0
+
+[sub_resource type="Animation" id="Animation_215e1"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Move/Scale/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7tiyv"]
+resource_name = "Leave"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Move/Scale/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333333, 0.19999999, 0.26, 0.32666665, 0.39333332, 0.46666667, 0.5333333, 0.6, 0.6666667, 0.73333335, 0.8, 0.8666667, 0.93333334, 1, 1.06, 1.1266667, 1.1933334, 1.2666667, 1.3333333, 1.4000001, 1.4666667, 1.5333333, 1.6, 1.6666667, 1.7333333, 1.8, 1.86, 1.9266667, 1.9933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Move:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1000, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7sc4i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Move/Scale/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Move:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_80cx4"]
+resource_name = "Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Move/Scale/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333333, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8heu"]
+_data = {
+&"Idle": SubResource("Animation_215e1"),
+&"Leave": SubResource("Animation_7tiyv"),
+&"RESET": SubResource("Animation_7sc4i"),
+&"Walk": SubResource("Animation_80cx4")
+}
+
+[node name="Customer" type="Node2D"]
+script = ExtResource("1_7tiyv")
+
+[node name="Move" type="Node2D" parent="."]
+
+[node name="Scale" type="Node2D" parent="Move"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Move/Scale"]
+material = SubResource("ShaderMaterial_gn8fi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e8heu")
+}

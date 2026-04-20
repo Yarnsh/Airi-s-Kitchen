@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var customer_prefab = load("res://customer.tscn")
+
 var customer_imgs = []
 var queue = []
 
@@ -16,19 +18,20 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	for idx in range(len(queue)):
-		var target = min(500.0, idx * 100.0)
+		var target = min(500.0, idx * (70.0 - (idx)*5.0))
+		queue[idx].scale = Vector2.ONE * (1.0 - min(queue[idx].position.length(), 450.0)/450.0)
+		queue[idx].light = 1.0 - min(queue[idx].position.length(), 100.0)/100.0
+		queue[idx].target = path.curve.sample_baked(target)
 		queue[idx].position = queue[idx].position.move_toward(path.curve.sample_baked(target), delta * 200.0)
 
 func spawn_customer():
-	# TODO: update this to put them in line behind the others
-	var sprite = Sprite2D.new()
-	sprite.texture = customer_imgs[randi_range(0, len(customer_imgs)-1)]
-	sprite.scale = Vector2.ONE * (200.0 / sprite.texture.get_width())
-	sprite.position = path.curve.sample_baked(500.0)
-	add_below_this.add_sibling(sprite)
-	queue.append(sprite)
+	var customer = customer_prefab.instantiate()
+	add_below_this.add_sibling(customer)
+	customer.set_texture(customer_imgs[randi_range(0, len(customer_imgs)-1)])
+	customer.position = path.curve.sample_baked(500.0)
+	queue.append(customer)
 
 func remove_customer():
 	if len(queue) > 0:
-		queue[0].queue_free()
+		queue[0].leave_line()
 		queue.pop_front()

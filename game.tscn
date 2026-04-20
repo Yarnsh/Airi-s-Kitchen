@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=23 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://bouncer_limit.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cyonoitmupp61" path="res://ui.gd" id="9_hve3p"]
 [ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="9_vef74"]
 [ext_resource type="Script" uid="uid://c2yjem5qxs5oc" path="res://score_ui.gd" id="10_iotsf"]
+[ext_resource type="AudioStream" uid="uid://cnj03kisbrvm6" path="res://SFX/cash_register.wav" id="11_7sc4i"]
 [ext_resource type="Script" uid="uid://b1m1c8ndtpyde" path="res://lives_ui.gd" id="11_lc2xo"]
 [ext_resource type="Script" uid="uid://bpd6u3awa4tbu" path="res://customers.gd" id="14_215e1"]
 
@@ -29,7 +30,7 @@ size = Vector2(64, 27.5)
 
 [sub_resource type="Curve2D" id="Curve2D_215e1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, -80)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 305, -170)
 }
 point_count = 2
 
@@ -105,6 +106,10 @@ texture = SubResource("PlaceholderTexture2D_eow3j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
 position = Vector2(49.5, 111)
 shape = SubResource("RectangleShape2D_j5wjh")
+
+[node name="CashRegister" type="AudioStreamPlayer" parent="Target"]
+stream = ExtResource("11_7sc4i")
+bus = &"SFX"
 
 [node name="GameHUD" type="CanvasLayer" parent="."]
 
