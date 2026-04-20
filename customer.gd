@@ -14,10 +14,12 @@ func _process(delta: float) -> void:
 			queue_free()
 	else:
 		sprite.material.set_shader_parameter("light", light)
-		if target.distance_squared_to(position) > 0.5:
+		if target.distance_squared_to(position) > 0.5 and anim.current_animation == "Idle":
 			anim.play("Walk")
-		else:
+			anim.seek(randf_range(0.0, anim.current_animation_length))
+		elif target.distance_squared_to(position) <= 0.5 and anim.current_animation == "Walk":
 			anim.play("Idle")
+			anim.seek(randf_range(0.0, anim.current_animation_length))
 
 func set_texture(tex):
 	sprite.texture = tex

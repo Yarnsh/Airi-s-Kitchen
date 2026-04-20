@@ -118,3 +118,4 @@ material = SubResource("ShaderMaterial_gn8fi")
 libraries = {
 &"": SubResource("AnimationLibrary_e8heu")
 }
+autoplay = "Idle"
