@@ -9,6 +9,7 @@ var spawn_delay = 2000
 var next_spawn = 0
 
 @onready var throw_sfx = $ThrowSFX
+@onready var customers = $"../Customers"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,4 +24,5 @@ func _physics_process(delta: float) -> void:
 		obj.global_position = global_position
 		obj.velocity = Vector2.RIGHT.rotated(-obj.start_angle) * obj.start_speed
 		throw_sfx.play()
+		customers.spawn_customer()
 		next_spawn += spawn_delay

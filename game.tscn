@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=22 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://bouncer_limit.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://d2ntiplxftxlx" path="res://image.png" id="2_eow3j"]
 [ext_resource type="Script" uid="uid://db3w2p84srpie" path="res://bouncer.gd" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://dfepl0xnrg575" path="res://bouncer_area.gd" id="3_fc0e3"]
@@ -10,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://dr6t5jeo7ohub" path="res://SFX/throw.wav" id="7_j5wjh"]
 [ext_resource type="Script" uid="uid://cyonoitmupp61" path="res://ui.gd" id="9_hve3p"]
 [ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="9_vef74"]
+[ext_resource type="Script" uid="uid://c2yjem5qxs5oc" path="res://score_ui.gd" id="10_iotsf"]
+[ext_resource type="Script" uid="uid://b1m1c8ndtpyde" path="res://lives_ui.gd" id="11_lc2xo"]
+[ext_resource type="Script" uid="uid://bpd6u3awa4tbu" path="res://customers.gd" id="14_215e1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
 size = Vector2(1274, 202)
@@ -23,13 +27,20 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
 size = Vector2(64, 27.5)
 
+[sub_resource type="Curve2D" id="Curve2D_215e1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, -80)
+}
+point_count = 2
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eow3j"]
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
 size = Vector2(227, 350)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
+script = ExtResource("1_mfdv2")
 
 [node name="Floor" type="Area2D" parent="."]
 position = Vector2(583, 620)
@@ -43,7 +54,7 @@ shape = SubResource("RectangleShape2D_ryrav")
 texture = SubResource("PlaceholderTexture2D_7jktm")
 
 [node name="BG" type="Sprite2D" parent="."]
-position = Vector2(585, 279)
+position = Vector2(577.99994, 279)
 scale = Vector2(1.06, 1.06)
 texture = ExtResource("2_eow3j")
 
@@ -66,6 +77,15 @@ script = ExtResource("3_fc0e3")
 position = Vector2(0, -64.75)
 shape = SubResource("RectangleShape2D_fc0e3")
 
+[node name="Customers" type="Node2D" parent="."]
+position = Vector2(958, 373)
+script = ExtResource("14_215e1")
+
+[node name="Path2D" type="Path2D" parent="Customers"]
+curve = SubResource("Curve2D_215e1")
+
+[node name="AddBelowThis" type="Node" parent="Customers"]
+
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, 394)
 script = ExtResource("4_fc0e3")
@@ -85,6 +105,49 @@ texture = SubResource("PlaceholderTexture2D_eow3j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
 position = Vector2(49.5, 111)
 shape = SubResource("RectangleShape2D_j5wjh")
+
+[node name="GameHUD" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="GameHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="PanelContainer" parent="GameHUD/UI"]
+custom_minimum_size = Vector2(300, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -289.0
+offset_bottom = 66.0
+grow_horizontal = 0
+script = ExtResource("10_iotsf")
+
+[node name="Label" type="Label" parent="GameHUD/UI/Score"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Lives" type="PanelContainer" parent="GameHUD/UI"]
+custom_minimum_size = Vector2(300, 64)
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 66.0
+script = ExtResource("11_lc2xo")
+
+[node name="Label" type="Label" parent="GameHUD/UI/Lives"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
+text = "* * * * * "
+vertical_alignment = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 
