@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		global_position = global_position.move_toward(follow_customer.move.global_position, 800.0 * delta)
 		rotation = move_toward(rotation, 0.0, delta)
 	else:
-		queue_free()
+		pass
 
 func bounce(normal):
 	var old_vel = velocity
