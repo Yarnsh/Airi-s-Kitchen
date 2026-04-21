@@ -11,5 +11,5 @@ func bounce(normal):
 func splat():
 	parent.splat()
 
-func collect():
-	parent.collect()
+func collect(customer):
+	parent.collect(customer)

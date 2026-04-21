@@ -34,4 +34,5 @@ func spawn_customer():
 func remove_customer():
 	if len(queue) > 0:
 		queue[0].leave_line()
-		queue.pop_front()
+		return queue.pop_front()
+	return null

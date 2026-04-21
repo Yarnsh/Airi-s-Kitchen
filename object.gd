@@ -15,12 +15,19 @@ extends Node2D
 var velocity = Vector2.ZERO
 var dead = false
 
+var follow_customer = null
+
 func _physics_process(delta: float) -> void:
 	if !dead:
 		velocity += Vector2.DOWN * 190.0 * delta
 		obj.rotate(rot_speed * delta)
 		
 		global_position += velocity * delta
+	elif follow_customer != null:
+		global_position = global_position.move_toward(follow_customer.move.global_position, 800.0 * delta)
+		rotation = move_toward(rotation, 0.0, delta)
+	else:
+		queue_free()
 
 func bounce(normal):
 	var old_vel = velocity
@@ -44,6 +51,6 @@ func splat():
 	
 	squash_sfx.play()
 
-func collect():
-	queue_free()
-	# TODO: cool collection animation
+func collect(customer):
+	dead = true
+	follow_customer = customer
