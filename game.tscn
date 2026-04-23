@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=26 format=3 uid="uid://eppk4lx7a2do"]
 
-[ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://bouncer_limit.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://d2ntiplxftxlx" path="res://image.png" id="2_eow3j"]
 [ext_resource type="Script" uid="uid://db3w2p84srpie" path="res://bouncer.gd" id="2_feb5d"]
@@ -14,13 +14,12 @@
 [ext_resource type="Script" uid="uid://c2yjem5qxs5oc" path="res://score_ui.gd" id="10_iotsf"]
 [ext_resource type="AudioStream" uid="uid://cnj03kisbrvm6" path="res://SFX/cash_register.wav" id="11_7sc4i"]
 [ext_resource type="Script" uid="uid://b1m1c8ndtpyde" path="res://lives_ui.gd" id="11_lc2xo"]
+[ext_resource type="Script" uid="uid://bn415ylpb54g8" path="res://snail.gd" id="12_80cx4"]
+[ext_resource type="AudioStream" uid="uid://dc0m7lbc685ox" path="res://SFX/cronch.wav" id="13_e8heu"]
 [ext_resource type="Script" uid="uid://bpd6u3awa4tbu" path="res://customers.gd" id="14_215e1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
-size = Vector2(1274, 202)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7jktm"]
-size = Vector2(2000, 100)
+size = Vector2(3164, 202)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fc0e3"]
 size = Vector2(64, 64)
@@ -40,6 +39,12 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
 size = Vector2(227, 350)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e8heu"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvswv"]
+size = Vector2(64, 64)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mfdv2")
 
@@ -50,9 +55,6 @@ script = ExtResource("5_7jktm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(3, 76)
 shape = SubResource("RectangleShape2D_ryrav")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-texture = SubResource("PlaceholderTexture2D_7jktm")
 
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(577.99994, 279)
@@ -109,6 +111,26 @@ shape = SubResource("RectangleShape2D_j5wjh")
 
 [node name="CashRegister" type="AudioStreamPlayer" parent="Target"]
 stream = ExtResource("11_7sc4i")
+bus = &"SFX"
+
+[node name="Foods" type="Node2D" parent="."]
+
+[node name="SnailLimit" type="Node2D" parent="."]
+position = Vector2(531, 524)
+script = ExtResource("1_e2o6t")
+
+[node name="Snail" type="Area2D" parent="SnailLimit"]
+collision_layer = 0
+script = ExtResource("12_80cx4")
+
+[node name="Sprite2D" type="Sprite2D" parent="SnailLimit/Snail"]
+texture = SubResource("PlaceholderTexture2D_e8heu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnailLimit/Snail"]
+shape = SubResource("RectangleShape2D_rvswv")
+
+[node name="Cronch" type="AudioStreamPlayer" parent="SnailLimit/Snail"]
+stream = ExtResource("13_e8heu")
 bus = &"SFX"
 
 [node name="GameHUD" type="CanvasLayer" parent="."]
@@ -226,5 +248,6 @@ value = 50.0
 [connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
 [connection signal="body_entered" from="BouncerLimit/Bouncer/Area2D" to="BouncerLimit/Bouncer/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
+[connection signal="body_entered" from="SnailLimit/Snail" to="SnailLimit/Snail" method="_on_body_entered"]
 [connection signal="value_changed" from="UI/UI/Settings/MarginContainer/All/Options/Controls/Master" to="UI/UI/Settings" method="_on_change"]
 [connection signal="value_changed" from="UI/UI/Settings/MarginContainer/All/Options/Controls/SFX" to="UI/UI/Settings" method="_on_change"]

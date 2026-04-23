@@ -45,6 +45,7 @@ func bounce(normal):
 
 func splat():
 	dead = true
+	obj.collision_layer = 0
 	sprite.hide()
 	splat_sprite.show()
 	obj.rotation = 0.0
@@ -53,4 +54,13 @@ func splat():
 
 func collect(customer):
 	dead = true
+	obj.collision_layer = 0
 	follow_customer = customer
+	if follow_customer != null:
+		follow_customer.following_food = self
+
+func eaten():
+	dead = true
+	obj.collision_layer = 0
+	queue_free()
+	# TODO: crumb particles or something here instead

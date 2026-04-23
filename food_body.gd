@@ -13,3 +13,6 @@ func splat():
 
 func collect(customer):
 	parent.collect(customer)
+
+func eaten():
+	parent.eaten()

@@ -4,5 +4,5 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	body.splat()
-	customers.remove_customer()
+	Static.game.spare_customers += 1
 	Static.game.take_life()

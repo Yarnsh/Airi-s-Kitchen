@@ -5,6 +5,7 @@ signal lives_changed(new_lives)
 
 var score = 0
 var lives = 5
+var spare_customers = 0
 
 func _ready() -> void:
 	Static.game = self
