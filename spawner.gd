@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		var obj = spawnables[spawn_id].instantiate()
 		food_parent.add_child(obj)
 		obj.global_position = global_position
-		obj.velocity = Vector2.RIGHT.rotated(-obj.start_angle) * obj.start_speed
+		obj.velocity = Vector2.RIGHT.rotated(deg_to_rad(-obj.start_angle)) * obj.start_speed
 		throw_sfx.play()
 		if Static.game.spare_customers > 0:
 			Static.game.spare_customers -= 1

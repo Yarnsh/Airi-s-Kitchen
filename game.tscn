@@ -1,15 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=31 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
-[ext_resource type="Texture2D" uid="uid://d2ntiplxftxlx" path="res://image.png" id="2_eow3j"]
 [ext_resource type="Script" uid="uid://db3w2p84srpie" path="res://bouncer.gd" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://cf0aawgy6iumh" path="res://HermitsHutGamesketch1.png" id="2_rvswv"]
 [ext_resource type="Script" uid="uid://dfepl0xnrg575" path="res://bouncer_area.gd" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://dk7c5xgi83ek6" path="res://spawner.gd" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://dp71722reaok1" path="res://floor.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dhr1e8ju5ugc6" path="res://target.gd" id="6_ryrav"]
 [ext_resource type="AudioStream" uid="uid://dr6t5jeo7ohub" path="res://SFX/throw.wav" id="7_j5wjh"]
-[ext_resource type="Script" uid="uid://cyonoitmupp61" path="res://ui.gd" id="9_hve3p"]
 [ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="9_vef74"]
 [ext_resource type="Script" uid="uid://c2yjem5qxs5oc" path="res://score_ui.gd" id="10_iotsf"]
 [ext_resource type="AudioStream" uid="uid://cnj03kisbrvm6" path="res://SFX/cash_register.wav" id="11_7sc4i"]
@@ -17,6 +16,12 @@
 [ext_resource type="Script" uid="uid://bn415ylpb54g8" path="res://snail.gd" id="12_80cx4"]
 [ext_resource type="AudioStream" uid="uid://dc0m7lbc685ox" path="res://SFX/cronch.wav" id="13_e8heu"]
 [ext_resource type="Script" uid="uid://bpd6u3awa4tbu" path="res://customers.gd" id="14_215e1"]
+[ext_resource type="Texture2D" uid="uid://ca62k8hvaj1ul" path="res://eye-open.png" id="16_e36ub"]
+[ext_resource type="Script" uid="uid://db8rghoddhqw8" path="res://life_indicator.gd" id="16_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://doj2ldn8l3kqf" path="res://eye-closed.png" id="17_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://coovvbc2pccxx" path="res://gear.png" id="19_qhcbd"]
+[ext_resource type="Script" uid="uid://c3oxaf3cfunyb" path="res://settings_button.gd" id="20_f1jbl"]
+[ext_resource type="Script" uid="uid://4k02v6gdws4t" path="res://settings_close_button.gd" id="22_x5p1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
 size = Vector2(3164, 202)
@@ -29,7 +34,7 @@ size = Vector2(64, 27.5)
 
 [sub_resource type="Curve2D" id="Curve2D_215e1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 305, -170)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 161, -236)
 }
 point_count = 2
 
@@ -37,7 +42,7 @@ point_count = 2
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
-size = Vector2(227, 350)
+size = Vector2(121.5, 258)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e8heu"]
 size = Vector2(64, 64)
@@ -48,6 +53,11 @@ size = Vector2(64, 64)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mfdv2")
 
+[node name="BG" type="Sprite2D" parent="."]
+scale = Vector2(0.60092586, 0.6009259)
+texture = ExtResource("2_rvswv")
+centered = false
+
 [node name="Floor" type="Area2D" parent="."]
 position = Vector2(583, 620)
 script = ExtResource("5_7jktm")
@@ -56,14 +66,10 @@ script = ExtResource("5_7jktm")
 position = Vector2(3, 76)
 shape = SubResource("RectangleShape2D_ryrav")
 
-[node name="BG" type="Sprite2D" parent="."]
-position = Vector2(577.99994, 279)
-scale = Vector2(1.06, 1.06)
-texture = ExtResource("2_eow3j")
-
 [node name="BouncerLimit" type="Node2D" parent="."]
-position = Vector2(531, 415)
+position = Vector2(574, 435)
 script = ExtResource("1_e2o6t")
+width = 500.0
 
 [node name="Bouncer" type="Node2D" parent="BouncerLimit"]
 script = ExtResource("2_feb5d")
@@ -81,7 +87,7 @@ position = Vector2(0, -64.75)
 shape = SubResource("RectangleShape2D_fc0e3")
 
 [node name="Customers" type="Node2D" parent="."]
-position = Vector2(958, 373)
+position = Vector2(1119, 318)
 script = ExtResource("14_215e1")
 
 [node name="Path2D" type="Path2D" parent="Customers"]
@@ -90,7 +96,7 @@ curve = SubResource("Curve2D_215e1")
 [node name="AddBelowThis" type="Node" parent="Customers"]
 
 [node name="Spawner" type="Node2D" parent="."]
-position = Vector2(0, 394)
+position = Vector2(232, 367)
 script = ExtResource("4_fc0e3")
 
 [node name="ThrowSFX" type="AudioStreamPlayer" parent="Spawner"]
@@ -106,7 +112,7 @@ visible = false
 texture = SubResource("PlaceholderTexture2D_eow3j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
-position = Vector2(49.5, 111)
+position = Vector2(90.75, 137)
 shape = SubResource("RectangleShape2D_j5wjh")
 
 [node name="CashRegister" type="AudioStreamPlayer" parent="Target"]
@@ -116,7 +122,7 @@ bus = &"SFX"
 [node name="Foods" type="Node2D" parent="."]
 
 [node name="SnailLimit" type="Node2D" parent="."]
-position = Vector2(531, 524)
+position = Vector2(531, 543)
 script = ExtResource("1_e2o6t")
 
 [node name="Snail" type="Area2D" parent="SnailLimit"]
@@ -146,12 +152,8 @@ grow_vertical = 2
 [node name="Score" type="PanelContainer" parent="GameHUD/UI"]
 custom_minimum_size = Vector2(300, 64)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -289.0
+offset_right = 300.0
 offset_bottom = 66.0
-grow_horizontal = 0
 script = ExtResource("10_iotsf")
 
 [node name="Label" type="Label" parent="GameHUD/UI/Score"]
@@ -165,30 +167,140 @@ vertical_alignment = 1
 [node name="Lives" type="PanelContainer" parent="GameHUD/UI"]
 custom_minimum_size = Vector2(300, 64)
 layout_mode = 1
-offset_right = 300.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_right = 168.0
 offset_bottom = 66.0
+grow_horizontal = 2
 script = ExtResource("11_lc2xo")
 
-[node name="Label" type="Label" parent="GameHUD/UI/Lives"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/UI/Lives"]
 layout_mode = 2
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 40
-text = "* * * * * "
-vertical_alignment = 1
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Life1" type="Control" parent="GameHUD/UI/Lives/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("16_hb5m1")
 
-[node name="UI" type="Control" parent="UI"]
+[node name="Open" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_e36ub")
+
+[node name="Closed" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life1"]
 visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_hb5m1")
+
+[node name="Life2" type="Control" parent="GameHUD/UI/Lives/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("16_hb5m1")
+
+[node name="Open" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_e36ub")
+
+[node name="Closed" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life2"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_hb5m1")
+
+[node name="Life3" type="Control" parent="GameHUD/UI/Lives/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("16_hb5m1")
+
+[node name="Open" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_e36ub")
+
+[node name="Closed" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life3"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_hb5m1")
+
+[node name="Life4" type="Control" parent="GameHUD/UI/Lives/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("16_hb5m1")
+
+[node name="Open" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life4"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_e36ub")
+
+[node name="Closed" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life4"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_hb5m1")
+
+[node name="Life5" type="Control" parent="GameHUD/UI/Lives/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("16_hb5m1")
+
+[node name="Open" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life5"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_e36ub")
+
+[node name="Closed" type="TextureRect" parent="GameHUD/UI/Lives/HBoxContainer/Life5"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_hb5m1")
+
+[node name="Settings" type="Button" parent="GameHUD/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 72.0
+grow_horizontal = 0
+icon = ExtResource("19_qhcbd")
+script = ExtResource("20_f1jbl")
+
+[node name="SettingsUI" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="UI" type="Control" parent="SettingsUI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_hve3p")
 
-[node name="Settings" type="PanelContainer" parent="UI/UI"]
+[node name="BG" type="PanelContainer" parent="SettingsUI/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Settings" type="PanelContainer" parent="SettingsUI/UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -199,48 +311,62 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_vef74")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/UI/Settings"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsUI/UI/Settings"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="All" type="VBoxContainer" parent="UI/UI/Settings/MarginContainer"]
+[node name="All" type="VBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer"]
 layout_mode = 2
 
-[node name="Options" type="HBoxContainer" parent="UI/UI/Settings/MarginContainer/All"]
+[node name="Header" type="HBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All"]
 layout_mode = 2
 
-[node name="Labels" type="VBoxContainer" parent="UI/UI/Settings/MarginContainer/All/Options"]
+[node name="Label" type="Label" parent="SettingsUI/UI/Settings/MarginContainer/All/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Settings"
+
+[node name="Close" type="Button" parent="SettingsUI/UI/Settings/MarginContainer/All/Header"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "X"
+script = ExtResource("22_x5p1p")
+
+[node name="Options" type="HBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All"]
 layout_mode = 2
 
-[node name="Master" type="Label" parent="UI/UI/Settings/MarginContainer/All/Options/Labels"]
+[node name="Labels" type="VBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Labels"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Master"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SFX" type="Label" parent="UI/UI/Settings/MarginContainer/All/Options/Labels"]
+[node name="SFX" type="Label" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Labels"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "SFX"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="UI/UI/Settings/MarginContainer/All/Options"]
+[node name="VSeparator" type="VSeparator" parent="SettingsUI/UI/Settings/MarginContainer/All/Options"]
 layout_mode = 2
 
-[node name="Controls" type="VBoxContainer" parent="UI/UI/Settings/MarginContainer/All/Options"]
+[node name="Controls" type="VBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All/Options"]
 layout_mode = 2
 
-[node name="Master" type="HSlider" parent="UI/UI/Settings/MarginContainer/All/Options/Controls"]
+[node name="Master" type="HSlider" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls"]
 custom_minimum_size = Vector2(200, 35)
 layout_mode = 2
 value = 50.0
 
-[node name="SFX" type="HSlider" parent="UI/UI/Settings/MarginContainer/All/Options/Controls"]
+[node name="SFX" type="HSlider" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls"]
 custom_minimum_size = Vector2(200, 35)
 layout_mode = 2
 value = 50.0
@@ -249,5 +375,7 @@ value = 50.0
 [connection signal="body_entered" from="BouncerLimit/Bouncer/Area2D" to="BouncerLimit/Bouncer/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
 [connection signal="body_entered" from="SnailLimit/Snail" to="SnailLimit/Snail" method="_on_body_entered"]
-[connection signal="value_changed" from="UI/UI/Settings/MarginContainer/All/Options/Controls/Master" to="UI/UI/Settings" method="_on_change"]
-[connection signal="value_changed" from="UI/UI/Settings/MarginContainer/All/Options/Controls/SFX" to="UI/UI/Settings" method="_on_change"]
+[connection signal="pressed" from="GameHUD/UI/Settings" to="GameHUD/UI/Settings" method="_on_pressed"]
+[connection signal="pressed" from="SettingsUI/UI/Settings/MarginContainer/All/Header/Close" to="SettingsUI/UI/Settings/MarginContainer/All/Header/Close" method="_on_pressed"]
+[connection signal="value_changed" from="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls/Master" to="SettingsUI/UI/Settings" method="_on_change"]
+[connection signal="value_changed" from="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls/SFX" to="SettingsUI/UI/Settings" method="_on_change"]

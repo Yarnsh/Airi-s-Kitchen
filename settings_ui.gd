@@ -1,5 +1,6 @@
 extends PanelContainer
 
+@onready var canvas = $"../.."
 @onready var master_volume = $MarginContainer/All/Options/Controls/Master
 @onready var sfx_volume = $MarginContainer/All/Options/Controls/SFX
 
@@ -7,10 +8,23 @@ var last_settings = {}
 var ready_done = false
 
 func _ready():
+	Static.settings_menu = self
 	set_settings_from_dict(read_from_file())
 	apply_current_settings()
 	last_settings = get_current_settings_dict()
 	ready_done = true
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Menu"):
+		canvas.visible = !canvas.visible
+		if !canvas.visible:
+			save_settings()
+
+func hide_():
+	save_settings()
+	canvas.hide()
+func show_():
+	canvas.show()
 
 func get_current_settings_dict():
 	return {

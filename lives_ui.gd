@@ -1,7 +1,13 @@
 extends PanelContainer
 
 var connected = false
-@onready var label = $Label
+@onready var lives = [
+	$HBoxContainer/Life1,
+	$HBoxContainer/Life2,
+	$HBoxContainer/Life3,
+	$HBoxContainer/Life4,
+	$HBoxContainer/Life5
+]
 
 func _process(delta: float) -> void:
 	if !connected and Static.game != null: # Lazy way to avoid ready timings
@@ -9,6 +15,6 @@ func _process(delta: float) -> void:
 		connected = true
 
 func lives_changed(new_lives):
-	label.text = ""
-	for i in range(new_lives):
-		label.text += "* "
+	for i in range(5):
+		if i >= new_lives:
+			lives[i].lose_life()

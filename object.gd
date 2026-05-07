@@ -1,7 +1,8 @@
 extends Node2D
 
-@export var start_angle = 0.75
+@export var start_angle = 45
 @export var start_speed = 300.0
+@export var gravity = 190.0
 
 @onready var obj = $Object
 @onready var sprite = $Object/Sprite2D
@@ -19,7 +20,7 @@ var follow_customer = null
 
 func _physics_process(delta: float) -> void:
 	if !dead:
-		velocity += Vector2.DOWN * 190.0 * delta
+		velocity += Vector2.DOWN * gravity * delta
 		obj.rotate(rot_speed * delta)
 		
 		global_position += velocity * delta

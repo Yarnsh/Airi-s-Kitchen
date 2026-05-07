@@ -51,6 +51,7 @@ _data = {
 
 [node name="Food" type="Node2D"]
 script = ExtResource("1_i514n")
+start_angle = 30
 rot_speed = 1.0
 rot_mod = 2.0
 
@@ -63,7 +64,7 @@ script = ExtResource("2_ycrcj")
 shape = SubResource("CircleShape2D_fc0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Object"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_0bvfr")
 
 [node name="SplatSprite" type="Sprite2D" parent="Object"]
