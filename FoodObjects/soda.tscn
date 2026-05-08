@@ -1,0 +1,118 @@
+[gd_scene load_steps=17 format=3 uid="uid://dgdesw7go6cbn"]
+
+[ext_resource type="Script" uid="uid://dlenfbgpdef3i" path="res://soda_food.gd" id="1_wolm0"]
+[ext_resource type="Script" uid="uid://b3cw4uvuft7xw" path="res://food_body.gd" id="2_0ujqe"]
+[ext_resource type="Texture2D" uid="uid://dqb1vqbxnepv" path="res://spray.png" id="3_0ujqe"]
+[ext_resource type="Texture2D" uid="uid://bsf4p5xxb3hnj" path="res://FoodPics/jilk_recipie.png" id="3_wolm0"]
+[ext_resource type="AudioStream" uid="uid://bkugwsbpv6f88" path="res://SFX/bounce.wav" id="4_h5rwq"]
+[ext_resource type="AudioStream" uid="uid://b6cgoxhbls4qu" path="res://SFX/squish.wav" id="5_1w66y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obstq"]
+size = Vector2(28, 90)
+
+[sub_resource type="Curve" id="Curve_h5rwq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9015152, 0.46067423), -1.8009621, -1.8009621, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1w66y"]
+curve = SubResource("Curve_h5rwq")
+
+[sub_resource type="Curve" id="Curve_3dl2m"]
+_data = [Vector2(0, 0.08988774), 0.0, 0.97331434, 0, 0, Vector2(1, 0.3820225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_q58yy"]
+curve = SubResource("Curve_3dl2m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l5ea8"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 10.0
+flatness = 1.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_q58yy")
+alpha_curve = SubResource("CurveTexture_1w66y")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l2ofb"]
+size = Vector2(64, 16)
+
+[sub_resource type="Animation" id="Animation_l2ofb"]
+resource_name = "Bounce"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.09, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.7), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3xuqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xuqs"]
+_data = {
+&"Bounce": SubResource("Animation_l2ofb"),
+&"RESET": SubResource("Animation_3xuqs")
+}
+
+[node name="Food" type="Node2D"]
+script = ExtResource("1_wolm0")
+rot_speed = 2.0
+rot_mod = 6.0
+
+[node name="Object" type="CharacterBody2D" parent="."]
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("2_0ujqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Object"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_obstq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Object"]
+position = Vector2(0, -36)
+emitting = false
+texture = ExtResource("3_0ujqe")
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_l5ea8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Object"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_wolm0")
+
+[node name="SplatSprite" type="Sprite2D" parent="Object"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_l2ofb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Object"]
+libraries = {
+&"": SubResource("AnimationLibrary_3xuqs")
+}
+
+[node name="BounceSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h5rwq")
+bus = &"SFX"
+
+[node name="SquashSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1w66y")
+bus = &"SFX"

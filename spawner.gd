@@ -1,8 +1,9 @@
 extends Node2D
 
 @onready var spawnables = [
-	load("res://FoodObjects/beans.tscn"),
-	load("res://FoodObjects/pizza.tscn")
+	#load("res://FoodObjects/beans.tscn"),
+	#load("res://FoodObjects/pizza.tscn")
+	load("res://FoodObjects/soda.tscn")
 ]
 
 var spawn_delay = 2000
