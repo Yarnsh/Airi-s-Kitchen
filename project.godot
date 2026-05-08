@@ -23,6 +23,10 @@ Static="*res://static.gd"
 
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="uid://4n85os157qfy"
+
 [input]
 
 Menu={

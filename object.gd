@@ -44,6 +44,19 @@ func bounce(normal):
 	
 	bounce_sfx.play()
 
+func wall_bounce(normal):
+	var old_vel = velocity
+	velocity = -(velocity.reflect(normal))
+	
+	# prevent bad feeling bounces
+	var speed = velocity.length()
+	velocity = velocity.normalized() * speed
+	
+	rot_speed = (1.0 + (velocity.normalized().dot(old_vel.normalized()))) * rot_mod
+	rot_speed *= -sign(old_vel.rotated(PI/2.0).dot(velocity))
+	
+	bounce_sfx.play()
+
 func splat():
 	dead = true
 	obj.collision_layer = 0
@@ -61,7 +74,11 @@ func collect(customer):
 		follow_customer.following_food = self
 
 func eaten():
+	remove()
+	# TODO: crumb particles or something here instead
+
+func remove():
+	# Same as eaten, but without visual effects
 	dead = true
 	obj.collision_layer = 0
 	queue_free()
-	# TODO: crumb particles or something here instead

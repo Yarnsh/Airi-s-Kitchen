@@ -8,6 +8,11 @@ func bounce(normal):
 		parent.bounce(normal)
 		bounce_anim.play("Bounce")
 
+func wall_bounce(normal):
+	if parent.velocity.dot(normal) < 0.0:
+		parent.wall_bounce(normal)
+		bounce_anim.play("Bounce")
+
 func splat():
 	parent.splat()
 
@@ -16,3 +21,6 @@ func collect(customer):
 
 func eaten():
 	parent.eaten()
+
+func remove():
+	parent.remove()

@@ -1,11 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=37 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
 [ext_resource type="Script" uid="uid://db3w2p84srpie" path="res://bouncer.gd" id="2_feb5d"]
 [ext_resource type="Texture2D" uid="uid://cf0aawgy6iumh" path="res://HermitsHutGamesketch1.png" id="2_rvswv"]
+[ext_resource type="Script" uid="uid://hgomnj8vm6ul" path="res://left_side.gd" id="3_f1jbl"]
 [ext_resource type="Script" uid="uid://dfepl0xnrg575" path="res://bouncer_area.gd" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://dysx36tcve3u8" path="res://bounce_wall.gd" id="3_qhcbd"]
 [ext_resource type="Script" uid="uid://dk7c5xgi83ek6" path="res://spawner.gd" id="4_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://c5nxsxml7k4wd" path="res://SFX/pots_n_pans.wav" id="4_vaj68"]
 [ext_resource type="Script" uid="uid://dp71722reaok1" path="res://floor.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dhr1e8ju5ugc6" path="res://target.gd" id="6_ryrav"]
 [ext_resource type="AudioStream" uid="uid://dr6t5jeo7ohub" path="res://SFX/throw.wav" id="7_j5wjh"]
@@ -23,8 +26,17 @@
 [ext_resource type="Script" uid="uid://c3oxaf3cfunyb" path="res://settings_button.gd" id="20_f1jbl"]
 [ext_resource type="Script" uid="uid://4k02v6gdws4t" path="res://settings_close_button.gd" id="22_x5p1p"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vaj68"]
+size = Vector2(368, 1320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhcbd"]
+size = Vector2(143, 305)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1jbl"]
+size = Vector2(145, 622)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
-size = Vector2(3164, 202)
+size = Vector2(2821, 202)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fc0e3"]
 size = Vector2(64, 64)
@@ -58,18 +70,45 @@ scale = Vector2(0.60092586, 0.6009259)
 texture = ExtResource("2_rvswv")
 centered = false
 
+[node name="LeftSide" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("3_f1jbl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSide"]
+position = Vector2(-258, 36)
+shape = SubResource("RectangleShape2D_vaj68")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LeftSide"]
+stream = ExtResource("4_vaj68")
+bus = &"SFX"
+
+[node name="BounceWall" type="Area2D" parent="."]
+position = Vector2(1101, 480)
+collision_layer = 0
+script = ExtResource("3_qhcbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceWall"]
+position = Vector2(3.5, 40.5)
+shape = SubResource("RectangleShape2D_qhcbd")
+debug_color = Color(0.9871772, 0, 0.32075325, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BounceWall"]
+position = Vector2(2.5, -682)
+shape = SubResource("RectangleShape2D_f1jbl")
+debug_color = Color(0.9871772, 0, 0.32075325, 0.41960785)
+
 [node name="Floor" type="Area2D" parent="."]
 position = Vector2(583, 620)
 script = ExtResource("5_7jktm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(3, 76)
+position = Vector2(174.5, 76)
 shape = SubResource("RectangleShape2D_ryrav")
 
 [node name="BouncerLimit" type="Node2D" parent="."]
-position = Vector2(574, 435)
+position = Vector2(621, 435)
 script = ExtResource("1_e2o6t")
-width = 500.0
+width = 700.0
 
 [node name="Bouncer" type="Node2D" parent="BouncerLimit"]
 script = ExtResource("2_feb5d")
@@ -159,7 +198,7 @@ script = ExtResource("10_iotsf")
 [node name="Label" type="Label" parent="GameHUD/UI/Score"]
 layout_mode = 2
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -371,6 +410,8 @@ custom_minimum_size = Vector2(200, 35)
 layout_mode = 2
 value = 50.0
 
+[connection signal="body_entered" from="LeftSide" to="LeftSide" method="_on_body_entered"]
+[connection signal="body_entered" from="BounceWall" to="BounceWall" method="_on_body_entered"]
 [connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
 [connection signal="body_entered" from="BouncerLimit/Bouncer/Area2D" to="BouncerLimit/Bouncer/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
