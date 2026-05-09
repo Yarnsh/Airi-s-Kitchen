@@ -1,11 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgdesw7go6cbn"]
+[gd_scene load_steps=18 format=3 uid="uid://dgdesw7go6cbn"]
 
 [ext_resource type="Script" uid="uid://dlenfbgpdef3i" path="res://soda_food.gd" id="1_wolm0"]
 [ext_resource type="Script" uid="uid://b3cw4uvuft7xw" path="res://food_body.gd" id="2_0ujqe"]
 [ext_resource type="Texture2D" uid="uid://dqb1vqbxnepv" path="res://spray.png" id="3_0ujqe"]
 [ext_resource type="Texture2D" uid="uid://bsf4p5xxb3hnj" path="res://FoodPics/jilk_recipie.png" id="3_wolm0"]
-[ext_resource type="AudioStream" uid="uid://bkugwsbpv6f88" path="res://SFX/bounce.wav" id="4_h5rwq"]
-[ext_resource type="AudioStream" uid="uid://b6cgoxhbls4qu" path="res://SFX/squish.wav" id="5_1w66y"]
+[ext_resource type="AudioStream" uid="uid://py7ismeeel3r" path="res://SFX/glass_tap.wav" id="5_obstq"]
+[ext_resource type="AudioStream" uid="uid://clojjsq3ft17n" path="res://SFX/glass_smash.wav" id="6_h5rwq"]
+[ext_resource type="AudioStream" uid="uid://cwlwdg3m4jghj" path="res://SFX/soda_hiss.wav" id="7_obstq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obstq"]
 size = Vector2(28, 90)
@@ -110,9 +111,13 @@ libraries = {
 }
 
 [node name="BounceSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_h5rwq")
+stream = ExtResource("5_obstq")
 bus = &"SFX"
 
 [node name="SquashSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_1w66y")
+stream = ExtResource("6_h5rwq")
+bus = &"SFX"
+
+[node name="HissSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_obstq")
 bus = &"SFX"

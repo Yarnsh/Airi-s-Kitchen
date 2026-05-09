@@ -11,6 +11,7 @@ extends Node2D
 
 @onready var bounce_sfx = $BounceSFX
 @onready var squash_sfx = $SquashSFX
+@onready var hiss_sfx = $HissSFX
 
 @export var rot_speed = 0.0
 @export var rot_mod = 1.0
@@ -39,6 +40,7 @@ func bounce(normal):
 	if not fizzing:
 		fizzing = true
 		particles.emitting = true
+		hiss_sfx.play()
 	
 	var old_vel = velocity
 	velocity = -(velocity.reflect(normal))
