@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=38 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
@@ -34,6 +34,9 @@ size = Vector2(143, 305)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1jbl"]
 size = Vector2(145, 622)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2p71"]
+size = Vector2(1580, 228)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
 size = Vector2(2821, 202)
@@ -95,6 +98,17 @@ debug_color = Color(0.9871772, 0, 0.32075325, 0.41960785)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BounceWall"]
 position = Vector2(2.5, -682)
 shape = SubResource("RectangleShape2D_f1jbl")
+debug_color = Color(0.9871772, 0, 0.32075325, 0.41960785)
+
+[node name="Roof" type="Area2D" parent="."]
+position = Vector2(1101, 480)
+collision_layer = 0
+script = ExtResource("3_qhcbd")
+normal = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roof"]
+position = Vector2(-715, -667)
+shape = SubResource("RectangleShape2D_i2p71")
 debug_color = Color(0.9871772, 0, 0.32075325, 0.41960785)
 
 [node name="Floor" type="Area2D" parent="."]
@@ -412,6 +426,7 @@ value = 50.0
 
 [connection signal="body_entered" from="LeftSide" to="LeftSide" method="_on_body_entered"]
 [connection signal="body_entered" from="BounceWall" to="BounceWall" method="_on_body_entered"]
+[connection signal="body_entered" from="Roof" to="Roof" method="_on_body_entered"]
 [connection signal="body_entered" from="Floor" to="Floor" method="_on_body_entered"]
 [connection signal="body_entered" from="BouncerLimit/Bouncer/Area2D" to="BouncerLimit/Bouncer/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
