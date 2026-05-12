@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
 [ext_resource type="Script" uid="uid://db3w2p84srpie" path="res://bouncer.gd" id="2_feb5d"]
-[ext_resource type="Texture2D" uid="uid://cf0aawgy6iumh" path="res://HermitsHutGamesketch1.png" id="2_rvswv"]
+[ext_resource type="Texture2D" uid="uid://clrdbst0hccot" path="res://HermitsHutGamesketch2.png" id="2_vaj68"]
 [ext_resource type="Script" uid="uid://hgomnj8vm6ul" path="res://left_side.gd" id="3_f1jbl"]
 [ext_resource type="Script" uid="uid://dfepl0xnrg575" path="res://bouncer_area.gd" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://dysx36tcve3u8" path="res://bounce_wall.gd" id="3_qhcbd"]
@@ -67,7 +67,7 @@ script = ExtResource("1_mfdv2")
 
 [node name="BG" type="Sprite2D" parent="."]
 scale = Vector2(0.60092586, 0.6009259)
-texture = ExtResource("2_rvswv")
+texture = ExtResource("2_vaj68")
 centered = false
 
 [node name="LeftSide" type="Area2D" parent="."]
