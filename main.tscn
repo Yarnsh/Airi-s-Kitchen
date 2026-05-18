@@ -1,0 +1,344 @@
+[gd_scene load_steps=22 format=3 uid="uid://iqyp037fc5tk"]
+
+[ext_resource type="Texture2D" uid="uid://dcavqgrbnvbaw" path="res://hut1.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cb8jovvh0yuph" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="Shader" uid="uid://jw7f2jki3ug4" path="res://night_effect.gdshader" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://ciasw88xdti6o" path="res://leaf.png" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://bks3kogyk1xn3" path="res://start_button.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://7iduj3ekukno" path="res://settings_ui.tscn" id="6_7mycd"]
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NightEffect:material:shader_parameter/Red")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-190.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NightEffect:material:shader_parameter/Green")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-164.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NightEffect:material:shader_parameter/Blue")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-69.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fade:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lquwl"]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NightEffect:material:shader_parameter/Red")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-190.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NightEffect:material:shader_parameter/Green")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-164.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NightEffect:material:shader_parameter/Blue")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-69.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:zoom")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.69, 0.7, 2.6866665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(10, 10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fade:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.1533332, 2.6866665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.72, 2.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(36, 31)]
+}
+
+[sub_resource type="Animation" id="Animation_7mycd"]
+resource_name = "unfade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mycd"]
+_data = {
+&"RESET": SubResource("Animation_1bvp3"),
+&"start": SubResource("Animation_lquwl"),
+&"unfade": SubResource("Animation_7mycd")
+}
+
+[sub_resource type="Curve" id="Curve_272bh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113636374, 1), 0.0, 0.0, 0, 0, Vector2(0.2651515, 1), 0.0, 0.0, 0, 0, Vector2(0.34090906, 0.033707857), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_5vw27"]
+curve = SubResource("Curve_272bh")
+
+[sub_resource type="Curve" id="Curve_kek77"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.18181819, 117.303406), 0.0, 0.0, 0, 0, Vector2(0.34848487, -68.76404), 0.0, 0.0, 0, 0, Vector2(0.54545456, 93.03375), 0.0, 0.0, 0, 0, Vector2(0.79545456, -68.76404), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_4c57u"]
+curve = SubResource("Curve_kek77")
+
+[sub_resource type="Curve" id="Curve_efxa6"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0.0075757504, -1), 0.0, 0.0, 0, 0, Vector2(0.28030303, 1), 0.0, 0.0, 0, 0, Vector2(0.6136364, -1), 0.0, 0.0, 0, 0, Vector2(0.84090906, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48314607), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_dg77c"]
+curve_x = SubResource("Curve_efxa6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ycdy4"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 100, 1)
+emission_shape = 2
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = -1.0000161
+angular_velocity_max = 0.9999839
+angular_velocity_curve = SubResource("CurveTexture_4c57u")
+directional_velocity_min = -50.000015
+directional_velocity_max = 49.99998
+directional_velocity_curve = SubResource("CurveXYZTexture_dg77c")
+gravity = Vector3(0, 50, 0)
+alpha_curve = SubResource("CurveTexture_5vw27")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+shader = ExtResource("2_0xm2m")
+shader_parameter/Red = -190.0
+shader_parameter/Green = -164.0
+shader_parameter/Blue = -69.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1bvp3"]
+
+[sub_resource type="Gradient" id="Gradient_w48qg"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vivmo"]
+gradient = SubResource("Gradient_w48qg")
+width = 1
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lquwl")
+
+[node name="Hut" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_ig7tw")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7mycd")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(277, 74)
+texture = ExtResource("2_h2yge")
+lifetime = 12.0
+preprocess = 12.0
+randomness = 0.12
+process_material = SubResource("ParticleProcessMaterial_ycdy4")
+
+[node name="NightEffect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_h2yge")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_1bvp3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 324)
+
+[node name="GameParent" type="Node2D" parent="."]
+
+[node name="START" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 305.0
+offset_top = -119.0
+offset_right = 419.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+text = "START"
+script = ExtResource("4_1bvp3")
+
+[node name="Fade" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_vivmo")
+
+[node name="SettingsUI" parent="." instance=ExtResource("6_7mycd")]
+
+[connection signal="pressed" from="START" to="START" method="_on_pressed"]

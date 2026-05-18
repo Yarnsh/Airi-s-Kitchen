@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://7iduj3ekukno"]
+
+[ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="1_r3lmy"]
+[ext_resource type="Script" uid="uid://4k02v6gdws4t" path="res://settings_close_button.gd" id="2_lylge"]
+
+[node name="SettingsUI" type="CanvasLayer"]
+layer = 2
+visible = false
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Settings" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r3lmy")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Settings"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="All" type="VBoxContainer" parent="UI/Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="UI/Settings/MarginContainer/All"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Settings/MarginContainer/All/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Settings"
+
+[node name="Close" type="Button" parent="UI/Settings/MarginContainer/All/Header"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "X"
+script = ExtResource("2_lylge")
+
+[node name="Options" type="HBoxContainer" parent="UI/Settings/MarginContainer/All"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="UI/Settings/MarginContainer/All/Options/Labels"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Master"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFX" type="Label" parent="UI/Settings/MarginContainer/All/Options/Labels"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="UI/Settings/MarginContainer/All/Options"]
+layout_mode = 2
+
+[node name="Master" type="HSlider" parent="UI/Settings/MarginContainer/All/Options/Controls"]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+value = 50.0
+
+[node name="SFX" type="HSlider" parent="UI/Settings/MarginContainer/All/Options/Controls"]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+value = 50.0
+
+[connection signal="pressed" from="UI/Settings/MarginContainer/All/Header/Close" to="UI/Settings/MarginContainer/All/Header/Close" method="_on_pressed"]
+[connection signal="value_changed" from="UI/Settings/MarginContainer/All/Options/Controls/Master" to="UI/Settings" method="_on_change"]
+[connection signal="value_changed" from="UI/Settings/MarginContainer/All/Options/Controls/SFX" to="UI/Settings" method="_on_change"]

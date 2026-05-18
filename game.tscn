@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=36 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://dp71722reaok1" path="res://floor.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dhr1e8ju5ugc6" path="res://target.gd" id="6_ryrav"]
 [ext_resource type="AudioStream" uid="uid://dr6t5jeo7ohub" path="res://SFX/throw.wav" id="7_j5wjh"]
-[ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="9_vef74"]
 [ext_resource type="Script" uid="uid://c2yjem5qxs5oc" path="res://score_ui.gd" id="10_iotsf"]
 [ext_resource type="AudioStream" uid="uid://cnj03kisbrvm6" path="res://SFX/cash_register.wav" id="11_7sc4i"]
 [ext_resource type="Script" uid="uid://b1m1c8ndtpyde" path="res://lives_ui.gd" id="11_lc2xo"]
@@ -24,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://doj2ldn8l3kqf" path="res://eye-closed.png" id="17_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://coovvbc2pccxx" path="res://gear.png" id="19_qhcbd"]
 [ext_resource type="Script" uid="uid://c3oxaf3cfunyb" path="res://settings_button.gd" id="20_f1jbl"]
-[ext_resource type="Script" uid="uid://4k02v6gdws4t" path="res://settings_close_button.gd" id="22_x5p1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vaj68"]
 size = Vector2(368, 1320)
@@ -69,7 +67,7 @@ size = Vector2(64, 64)
 script = ExtResource("1_mfdv2")
 
 [node name="BG" type="Sprite2D" parent="."]
-scale = Vector2(0.60092586, 0.6009259)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_vaj68")
 centered = false
 
@@ -333,97 +331,6 @@ grow_horizontal = 0
 icon = ExtResource("19_qhcbd")
 script = ExtResource("20_f1jbl")
 
-[node name="SettingsUI" type="CanvasLayer" parent="."]
-layer = 2
-visible = false
-
-[node name="UI" type="Control" parent="SettingsUI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BG" type="PanelContainer" parent="SettingsUI/UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Settings" type="PanelContainer" parent="SettingsUI/UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("9_vef74")
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingsUI/UI/Settings"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="All" type="VBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer"]
-layout_mode = 2
-
-[node name="Header" type="HBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="SettingsUI/UI/Settings/MarginContainer/All/Header"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Settings"
-
-[node name="Close" type="Button" parent="SettingsUI/UI/Settings/MarginContainer/All/Header"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "X"
-script = ExtResource("22_x5p1p")
-
-[node name="Options" type="HBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All"]
-layout_mode = 2
-
-[node name="Labels" type="VBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All/Options"]
-layout_mode = 2
-
-[node name="Master" type="Label" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Labels"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-text = "Master"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="SFX" type="Label" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Labels"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-text = "SFX"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="VSeparator" type="VSeparator" parent="SettingsUI/UI/Settings/MarginContainer/All/Options"]
-layout_mode = 2
-
-[node name="Controls" type="VBoxContainer" parent="SettingsUI/UI/Settings/MarginContainer/All/Options"]
-layout_mode = 2
-
-[node name="Master" type="HSlider" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls"]
-custom_minimum_size = Vector2(200, 35)
-layout_mode = 2
-value = 50.0
-
-[node name="SFX" type="HSlider" parent="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls"]
-custom_minimum_size = Vector2(200, 35)
-layout_mode = 2
-value = 50.0
-
 [connection signal="body_entered" from="LeftSide" to="LeftSide" method="_on_body_entered"]
 [connection signal="body_entered" from="BounceWall" to="BounceWall" method="_on_body_entered"]
 [connection signal="body_entered" from="Roof" to="Roof" method="_on_body_entered"]
@@ -432,6 +339,3 @@ value = 50.0
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
 [connection signal="body_entered" from="SnailLimit/Snail" to="SnailLimit/Snail" method="_on_body_entered"]
 [connection signal="pressed" from="GameHUD/UI/Settings" to="GameHUD/UI/Settings" method="_on_pressed"]
-[connection signal="pressed" from="SettingsUI/UI/Settings/MarginContainer/All/Header/Close" to="SettingsUI/UI/Settings/MarginContainer/All/Header/Close" method="_on_pressed"]
-[connection signal="value_changed" from="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls/Master" to="SettingsUI/UI/Settings" method="_on_change"]
-[connection signal="value_changed" from="SettingsUI/UI/Settings/MarginContainer/All/Options/Controls/SFX" to="SettingsUI/UI/Settings" method="_on_change"]
