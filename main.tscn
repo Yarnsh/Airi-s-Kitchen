@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://iqyp037fc5tk"]
+[gd_scene load_steps=24 format=3 uid="uid://iqyp037fc5tk"]
 
 [ext_resource type="Texture2D" uid="uid://dcavqgrbnvbaw" path="res://hut1.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cb8jovvh0yuph" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Shader" uid="uid://jw7f2jki3ug4" path="res://night_effect.gdshader" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bolfj1vf7n5jv" path="res://door.png" id="2_5vw27"]
 [ext_resource type="Texture2D" uid="uid://ciasw88xdti6o" path="res://leaf.png" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://bks3kogyk1xn3" path="res://start_button.gd" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cvewe2wp2u1kh" path="res://windows.png" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://7iduj3ekukno" path="res://settings_ui.tscn" id="6_7mycd"]
 
 [sub_resource type="Animation" id="Animation_1bvp3"]
@@ -81,6 +83,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Windows:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.6627451, 0.53333336, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Door:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610.4, 357.2)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Door:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "start"
@@ -156,6 +194,42 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(36, 31)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Windows:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.71),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.6627451, 0.53333336, 1), Color(1, 0.6627451, 0.53333336, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Door:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.0333333, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(610.5, 357.3), Vector2(610.5, 357.3), Vector2(557, 357.2)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Door:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.0333333, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.6, 0.6), Vector2(0.1, 0.6)]
 }
 
 [sub_resource type="Animation" id="Animation_7mycd"]
@@ -278,6 +352,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lquwl")
 
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(610.4, 357.2)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_5vw27")
+
 [node name="Hut" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_ig7tw")
@@ -305,6 +384,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_1bvp3")
+
+[node name="Windows" type="Sprite2D" parent="."]
+modulate = Color(1, 0.6627451, 0.53333336, 1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_272bh")
+centered = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(576, 324)
