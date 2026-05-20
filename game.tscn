@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dc0m7lbc685ox" path="res://SFX/cronch.wav" id="13_e8heu"]
 [ext_resource type="Script" uid="uid://bpd6u3awa4tbu" path="res://customers.gd" id="14_215e1"]
 [ext_resource type="Texture2D" uid="uid://ca62k8hvaj1ul" path="res://eye-open.png" id="16_e36ub"]
+[ext_resource type="SpriteFrames" uid="uid://b5kwspb385f7u" path="res://Snail/snail_anims.tres" id="16_f1jbl"]
 [ext_resource type="Script" uid="uid://db8rghoddhqw8" path="res://life_indicator.gd" id="16_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://doj2ldn8l3kqf" path="res://eye-closed.png" id="17_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://coovvbc2pccxx" path="res://gear.png" id="19_qhcbd"]
@@ -56,9 +57,6 @@ size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
 size = Vector2(121.5, 258)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e8heu"]
-size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvswv"]
 size = Vector2(64, 64)
@@ -180,8 +178,10 @@ script = ExtResource("1_e2o6t")
 collision_layer = 0
 script = ExtResource("12_80cx4")
 
-[node name="Sprite2D" type="Sprite2D" parent="SnailLimit/Snail"]
-texture = SubResource("PlaceholderTexture2D_e8heu")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="SnailLimit/Snail"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("16_f1jbl")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SnailLimit/Snail"]
 shape = SubResource("RectangleShape2D_rvswv")

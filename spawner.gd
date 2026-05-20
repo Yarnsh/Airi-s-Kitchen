@@ -47,7 +47,6 @@ func pick_food():
 	for t in reverse_pattern_keys:
 		if now - start_time >= t.to_int():
 			var s = food_pattern.get(t, {}).get("spawnables", [null])
-			print(s[randi_range(0, len(s) - 1)]["obj"])
 			return s[randi_range(0, len(s) - 1)]
 	
 	return null

@@ -1,0 +1,52 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://b5kwspb385f7u"]
+
+[ext_resource type="Texture2D" uid="uid://bul4hi3kxqdgh" path="res://Snail/Catch1Snail.png" id="1_kfgls"]
+[ext_resource type="Texture2D" uid="uid://deilib8k8j7xx" path="res://Snail/Catch2Snail.png" id="2_c4kjf"]
+[ext_resource type="Texture2D" uid="uid://p57ujp8ynof0" path="res://Snail/Chew1Snail.png" id="3_v8ql6"]
+[ext_resource type="Texture2D" uid="uid://drolpielnhr8f" path="res://Snail/Chew2Snail.png" id="4_3qdnh"]
+[ext_resource type="Texture2D" uid="uid://c81lakvf4re05" path="res://Snail/Idlesnail.png" id="5_lougw"]
+[ext_resource type="Texture2D" uid="uid://cl4ummul8qvqn" path="res://Snail/Schmoovinsnail.png" id="6_igj8v"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kfgls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c4kjf")
+}],
+"loop": false,
+"name": &"catch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v8ql6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3qdnh")
+}],
+"loop": true,
+"name": &"chew",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lougw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_igj8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lougw")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
