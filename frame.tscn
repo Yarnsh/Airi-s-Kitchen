@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://hy32k65emhpv"]
+
+[ext_resource type="Texture2D" uid="uid://r8jqs2jt4sp4" path="res://frame.png" id="1_m7nv7"]
+
+[node name="Frame" type="MarginContainer"]
+mouse_filter = 2
+theme_override_constants/margin_left = -63
+theme_override_constants/margin_top = -63
+theme_override_constants/margin_right = -63
+theme_override_constants/margin_bottom = -63
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_m7nv7")
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
