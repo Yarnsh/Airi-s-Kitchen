@@ -6,5 +6,5 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	var cust = customers.remove_customer()
 	body.collect(cust)
-	Static.game.add_score(100) # TODO: take score from food items
+	Static.game.add_score(body.food_data.get("points", 100))
 	cash_sfx.play()

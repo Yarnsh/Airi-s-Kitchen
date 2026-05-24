@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+@export var food_data = {
+	"points": 100,
+	"snail_points": 10,
+	"salty": false,
+	"snail_eat_time": 2000
+}
+
 @onready var parent = get_parent()
 @onready var bounce_anim = $AnimationPlayer
 

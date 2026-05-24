@@ -59,6 +59,12 @@ rot_mod = 4.0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("2_omdhj")
+food_data = {
+"points": 50,
+"salty": false,
+"snail_eat_time": 500,
+"snail_points": 3
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object"]
 shape = SubResource("CircleShape2D_fc0e3")

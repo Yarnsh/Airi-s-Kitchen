@@ -85,6 +85,12 @@ rot_mod = 6.0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("2_0ujqe")
+food_data = {
+"points": 100,
+"salty": false,
+"snail_eat_time": 5000,
+"snail_points": 10
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object"]
 position = Vector2(0, 1)

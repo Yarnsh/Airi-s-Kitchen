@@ -30,6 +30,6 @@ func _on_body_entered(body: Node2D) -> void:
 		body.eaten()
 		Static.game.spare_customers += 1
 		cronch_sfx.play()
-		Static.game.add_score(10) # TODO: take score from food items
-		digested_time = Time.get_ticks_msec() + 2000 # TODO: take this time from the food item
+		Static.game.add_score(body.food_data.get("snail_points", 10))
+		digested_time = Time.get_ticks_msec() + body.food_data.get("snail_eat_time", 100)
 		sprite.play("catch")
