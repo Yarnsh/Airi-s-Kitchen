@@ -12,7 +12,10 @@ config_version=5
 
 config/name="Airis Stew"
 run/main_scene="uid://iqyp037fc5tk"
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/features=PackedStringArray("26.1", "GL Compatibility", "Redot")
+boot_splash/fullsize=false
+boot_splash/image="uid://y152oqme4gbl"
 config/icon="res://icon.svg"
 
 [autoload]

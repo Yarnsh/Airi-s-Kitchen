@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://iqyp037fc5tk"]
+[gd_scene load_steps=25 format=3 uid="uid://iqyp037fc5tk"]
 
 [ext_resource type="Texture2D" uid="uid://dcavqgrbnvbaw" path="res://hut1.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cb8jovvh0yuph" path="res://main.gd" id="1_lquwl"]
@@ -8,6 +8,70 @@
 [ext_resource type="Script" uid="uid://bks3kogyk1xn3" path="res://start_button.gd" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cvewe2wp2u1kh" path="res://windows.png" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://7iduj3ekukno" path="res://settings_ui.tscn" id="6_7mycd"]
+
+[sub_resource type="Animation" id="Animation_5vw27"]
+resource_name = "Intro"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NightEffect:material:shader_parameter/Red")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.3666666, 3.7999997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-255.0, -190.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NightEffect:material:shader_parameter/Green")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.3666666, 3.7999997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-255.0, -164.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NightEffect:material:shader_parameter/Blue")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-255.0, -69.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Windows:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5333333, 1.7533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0.6627451, 0.53333336, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainControls:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.3, 5),
+"transitions": PackedFloat32Array(1, 0.45062524, 1),
+"update": 0,
+"values": [Vector2(1405, 304), Vector2(1405, 304), Vector2(1112, 304)]
+}
 
 [sub_resource type="Animation" id="Animation_1bvp3"]
 length = 0.001
@@ -118,6 +182,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.6, 0.6)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MainControls:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1112, 304)]
 }
 
 [sub_resource type="Animation" id="Animation_lquwl"]
@@ -285,6 +361,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7mycd"]
 _data = {
+&"Intro": SubResource("Animation_5vw27"),
 &"RESET": SubResource("Animation_1bvp3"),
 &"start": SubResource("Animation_lquwl"),
 &"unfade": SubResource("Animation_7mycd")
@@ -366,6 +443,7 @@ centered = false
 libraries = {
 &"": SubResource("AnimationLibrary_7mycd")
 }
+autoplay = "Intro"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(277, 74)
@@ -396,23 +474,6 @@ offset = Vector2(576, 324)
 
 [node name="GameParent" type="Node2D" parent="."]
 
-[node name="START" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 305.0
-offset_top = -119.0
-offset_right = 419.0
-offset_bottom = -53.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 45
-text = "START"
-script = ExtResource("4_1bvp3")
-
 [node name="Fade" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -426,4 +487,34 @@ texture = SubResource("GradientTexture1D_vivmo")
 
 [node name="SettingsUI" parent="." instance=ExtResource("6_7mycd")]
 
-[connection signal="pressed" from="START" to="START" method="_on_pressed"]
+[node name="MainControls" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="START" type="Button" parent="MainControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -119.0
+offset_right = -137.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+text = "START"
+script = ExtResource("4_1bvp3")
+
+[connection signal="pressed" from="MainControls/START" to="MainControls/START" method="_on_pressed"]

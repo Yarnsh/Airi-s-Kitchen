@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	hide()
-	$"..".start_game()
+	$"../..".start_game()
