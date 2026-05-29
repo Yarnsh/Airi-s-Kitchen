@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=41 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bn415ylpb54g8" path="res://snail.gd" id="12_80cx4"]
 [ext_resource type="AudioStream" uid="uid://dc0m7lbc685ox" path="res://SFX/cronch.wav" id="13_e8heu"]
 [ext_resource type="Script" uid="uid://bpd6u3awa4tbu" path="res://customers.gd" id="14_215e1"]
+[ext_resource type="Script" uid="uid://cmbsawyxocokg" path="res://splats.gd" id="15_i2p71"]
 [ext_resource type="Texture2D" uid="uid://ca62k8hvaj1ul" path="res://eye-open.png" id="16_e36ub"]
 [ext_resource type="SpriteFrames" uid="uid://b5kwspb385f7u" path="res://Snail/snail_anims.tres" id="16_f1jbl"]
 [ext_resource type="Script" uid="uid://db8rghoddhqw8" path="res://life_indicator.gd" id="16_hb5m1"]
@@ -61,6 +62,66 @@ size = Vector2(121.5, 258)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvswv"]
 size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_vaj68"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EatMover/EatMover2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scale:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i2p71"]
+resource_name = "eat"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EatMover/EatMover2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50.96), Vector2(0, -98), Vector2(0, -52.92), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scale:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.09, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.7), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa8c5"]
+_data = {
+&"RESET": SubResource("Animation_vaj68"),
+&"eat": SubResource("Animation_i2p71")
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mfdv2")
@@ -169,7 +230,8 @@ shape = SubResource("RectangleShape2D_j5wjh")
 stream = ExtResource("11_7sc4i")
 bus = &"SFX"
 
-[node name="Foods" type="Node2D" parent="."]
+[node name="Splats" type="Node2D" parent="."]
+script = ExtResource("15_i2p71")
 
 [node name="SnailLimit" type="Node2D" parent="."]
 position = Vector2(531, 543)
@@ -179,10 +241,12 @@ script = ExtResource("1_e2o6t")
 collision_layer = 0
 script = ExtResource("12_80cx4")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="SnailLimit/Snail"]
+[node name="Scale" type="Node2D" parent="SnailLimit/Snail"]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="SnailLimit/Snail/Scale"]
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("16_f1jbl")
-animation = &"idle"
+animation = &"chew"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SnailLimit/Snail"]
 shape = SubResource("RectangleShape2D_rvswv")
@@ -190,6 +254,18 @@ shape = SubResource("RectangleShape2D_rvswv")
 [node name="Cronch" type="AudioStreamPlayer" parent="SnailLimit/Snail"]
 stream = ExtResource("13_e8heu")
 bus = &"SFX"
+
+[node name="EatMover" type="Node2D" parent="SnailLimit/Snail"]
+position = Vector2(-40, -21)
+
+[node name="EatMover2" type="Node2D" parent="SnailLimit/Snail/EatMover"]
+
+[node name="Anim" type="AnimationPlayer" parent="SnailLimit/Snail"]
+libraries = {
+&"": SubResource("AnimationLibrary_xa8c5")
+}
+
+[node name="Foods" type="Node2D" parent="."]
 
 [node name="GameHUD" type="CanvasLayer" parent="."]
 

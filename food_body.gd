@@ -10,6 +10,9 @@ extends CharacterBody2D
 @onready var parent = get_parent()
 @onready var bounce_anim = $AnimationPlayer
 
+func is_dead():
+	return parent.dead
+
 func bounce(normal):
 	if parent.velocity.y > 0.0:
 		parent.bounce(normal)
@@ -26,8 +29,9 @@ func splat():
 func collect(customer):
 	parent.collect(customer)
 
-func eaten():
-	parent.eaten()
+func eaten(snail_target):
+	bounce_anim.play("Bounce")
+	parent.eaten(snail_target)
 
 func remove():
 	parent.remove()

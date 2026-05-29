@@ -3,6 +3,7 @@ extends Area2D
 @onready var customers = $"../Customers"
 
 func _on_body_entered(body: Node2D) -> void:
-	body.splat()
-	Static.game.spare_customers += 1
-	Static.game.take_life()
+	if !body.is_dead():
+		body.splat()
+		Static.game.spare_customers += 1
+		Static.game.take_life()

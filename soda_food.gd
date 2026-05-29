@@ -21,6 +21,7 @@ var fizz_accel = 250.0
 var dead = false
 
 var follow_customer = null
+var follow_snail = null
 
 func _physics_process(delta: float) -> void:
 	if !dead:
@@ -33,6 +34,9 @@ func _physics_process(delta: float) -> void:
 	elif follow_customer != null:
 		global_position = global_position.move_toward(follow_customer.move.global_position, 800.0 * delta)
 		rotation = move_toward(rotation, 0.0, delta)
+	elif follow_snail != null:
+		global_position.y = follow_snail.global_position.y
+		global_position.x = move_toward(global_position.x, follow_snail.global_position.x, 24.0 * delta)
 	else:
 		pass
 
@@ -75,6 +79,7 @@ func splat():
 	splat_sprite.show()
 	particles.emitting = false
 	obj.rotation = 0.0
+	call_deferred("reparent", Static.splat_parent)
 	
 	squash_sfx.play()
 
@@ -86,9 +91,9 @@ func collect(customer):
 	if follow_customer != null:
 		follow_customer.following_food = self
 
-func eaten():
-	remove()
-	# TODO: crumb particles or something here instead
+func eaten(snail_target):
+	dead = true
+	follow_snail = snail_target
 
 func remove():
 	# Same as eaten, but without visual effects
