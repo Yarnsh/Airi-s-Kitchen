@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/throw.wav-f80f258c6de970008aedada3ef2d4dac.sa
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

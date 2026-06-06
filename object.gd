@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name FoodObject
+
 @export var start_angle = 45
 @export var start_speed = 300.0
 @export var gravity = 190.0
