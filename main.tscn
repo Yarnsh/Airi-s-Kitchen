@@ -19,10 +19,10 @@ tracks/0/path = NodePath("NightEffect:material:shader_parameter/Red")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.3666666, 3.7999997),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 2.4333334, 3.7999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-255.0, -190.0]
+"values": [-255.0, -245.0, -245.0, -190.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -31,10 +31,10 @@ tracks/1/path = NodePath("NightEffect:material:shader_parameter/Green")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.3666666, 3.7999997),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 2.4333334, 3.7999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-255.0, -164.0]
+"values": [-255.0, -245.0, -245.0, -187.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -43,10 +43,10 @@ tracks/2/path = NodePath("NightEffect:material:shader_parameter/Blue")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 2.4333334, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-255.0, -69.0]
+"values": [-255.0, -205.0, -205.0, -168.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -58,7 +58,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1.5333333, 1.7533333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0.6627451, 0.53333336, 1)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.99999994, 0.67907006, 0.3361984, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -486,6 +486,7 @@ mouse_filter = 2
 texture = SubResource("GradientTexture1D_vivmo")
 
 [node name="SettingsUI" parent="." instance=ExtResource("6_7mycd")]
+visible = true
 
 [node name="MainControls" type="Control" parent="."]
 layout_mode = 1

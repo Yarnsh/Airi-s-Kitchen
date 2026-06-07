@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://7iduj3ekukno"]
+[gd_scene load_steps=6 format=3 uid="uid://7iduj3ekukno"]
 
 [ext_resource type="Script" uid="uid://dhm7yinm3ujvb" path="res://settings_ui.gd" id="1_r3lmy"]
 [ext_resource type="Script" uid="uid://4k02v6gdws4t" path="res://settings_close_button.gd" id="2_lylge"]
 [ext_resource type="PackedScene" uid="uid://hy32k65emhpv" path="res://frame.tscn" id="3_lylge"]
+[ext_resource type="Texture2D" uid="uid://ca62k8hvaj1ul" path="res://eye-open.png" id="3_xjw4u"]
+[ext_resource type="Texture2D" uid="uid://doj2ldn8l3kqf" path="res://eye-closed.png" id="4_t2t40"]
 
 [node name="SettingsUI" type="CanvasLayer"]
 layer = 2
-visible = false
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -53,12 +54,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Settings"
 
-[node name="Close" type="Button" parent="UI/Settings/MarginContainer/All/Header"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "X"
-script = ExtResource("2_lylge")
-
 [node name="Options" type="HBoxContainer" parent="UI/Settings/MarginContainer/All"]
 layout_mode = 2
 
@@ -98,6 +93,20 @@ value = 50.0
 [node name="Frame" parent="UI/Settings" instance=ExtResource("3_lylge")]
 layout_mode = 2
 
-[connection signal="pressed" from="UI/Settings/MarginContainer/All/Header/Close" to="UI/Settings/MarginContainer/All/Header/Close" method="_on_pressed"]
+[node name="Control" type="Control" parent="UI/Settings"]
+layout_mode = 2
+
+[node name="Close" type="TextureButton" parent="UI/Settings/Control"]
+layout_mode = 0
+offset_left = 248.5
+offset_top = -33.5
+offset_right = 312.5
+offset_bottom = 30.5
+size_flags_horizontal = 8
+texture_normal = ExtResource("3_xjw4u")
+texture_pressed = ExtResource("4_t2t40")
+script = ExtResource("2_lylge")
+
 [connection signal="value_changed" from="UI/Settings/MarginContainer/All/Options/Controls/Master" to="UI/Settings" method="_on_change"]
 [connection signal="value_changed" from="UI/Settings/MarginContainer/All/Options/Controls/SFX" to="UI/Settings" method="_on_change"]
+[connection signal="pressed" from="UI/Settings/Control/Close" to="UI/Settings/Control/Close" method="_on_pressed"]
