@@ -12,6 +12,10 @@ var speed = 100.0
 
 var digested_time = 0
 
+const below_start_dist = 10
+const below_end_dist = 20
+var below_food = false
+
 func _physics_process(delta: float) -> void:
 	if digested_time > Time.get_ticks_msec():
 		pass
@@ -23,8 +27,21 @@ func _physics_process(delta: float) -> void:
 				sprite.flip_h = food_x > global_position.x
 				if (sprite.flip_h and eat_mover.position.x < 0.0) or (!sprite.flip_h and eat_mover.position.x > 0.0):
 					eat_mover.position.x = -eat_mover.position.x
-				global_position.x = move_toward(global_position.x, food_x, speed * delta)
-				position.x = clampf(position.x, -limit.width/2.0, limit.width/2.0)
+				
+				if below_food and abs(food_x - global_position.x) > below_end_dist:
+					below_food = false
+				elif !below_food and abs(food_x - global_position.x) < below_start_dist:
+					below_food = true
+				
+				if !below_food:
+					global_position.x = move_toward(global_position.x, food_x, speed * delta)
+					if abs(position.x) > limit.width/2.0:
+						position.x = clampf(position.x, -limit.width/2.0, limit.width/2.0)
+						sprite.play("idle")
+					else:
+						sprite.play("move")
+				else:
+					sprite.play("idle")
 				return
 		# Idle if we didnt move towards anything
 		sprite.play("idle")

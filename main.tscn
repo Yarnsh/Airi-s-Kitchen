@@ -486,7 +486,6 @@ mouse_filter = 2
 texture = SubResource("GradientTexture1D_vivmo")
 
 [node name="SettingsUI" parent="." instance=ExtResource("6_7mycd")]
-visible = true
 
 [node name="MainControls" type="Control" parent="."]
 layout_mode = 1
