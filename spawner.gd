@@ -51,7 +51,6 @@ func pick_food():
 	
 	return null
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_time = Time.get_ticks_msec()
 	reverse_pattern_keys = food_pattern.keys()
@@ -59,10 +58,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var now = Time.get_ticks_msec()
-	if now >= next_pick_time:
+	if !Static.game.game_is_over and now >= next_pick_time:
 		var def = pick_food()
 		next_pick_time = now + def.get("time", 2000)
 		await get_tree().create_timer(float(def.get("time", 2000))/1000.0).timeout
+		if Static.game.game_is_over:
+			return
 		var obj = def.get("obj").instantiate() # TODO: default here
 		food_parent.add_child(obj)
 		obj.global_position = global_position

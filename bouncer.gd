@@ -8,9 +8,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	global_position.x = get_global_mouse_position().x
-	position.y = 0.0
-	position.x = clampf(position.x, -limit.width/2.0, limit.width/2.0)
+	if !Static.game.game_is_over:
+		global_position.x = get_global_mouse_position().x
+		position.y = 0.0
+		position.x = clampf(position.x, -limit.width/2.0, limit.width/2.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

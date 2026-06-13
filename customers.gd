@@ -9,6 +9,7 @@ var queue = []
 @onready var path = $Path2D
 
 func _ready() -> void:
+	Static.customers = self
 	var customer_pngs = Static.get_all_file_paths("res://Customers")
 	for png in customer_pngs:
 		if png.ends_with(".import"):
@@ -36,3 +37,9 @@ func remove_customer():
 		queue[0].leave_line()
 		return queue.pop_front()
 	return null
+
+func game_over():
+	for c in queue:
+		c.leave_line()
+	queue = []
+	# TODO: play angry effects

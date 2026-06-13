@@ -1,8 +1,11 @@
 extends Node
 
+var main_menu = null
 var game = null
 var settings_menu = null
+var customers = null
 var splat_parent = null
+var game_over_screen = null
 
 func get_all_file_paths(path: String) -> Array[String]:  
 	var file_paths: Array[String] = []  

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://eppk4lx7a2do"]
+[gd_scene load_steps=51 format=3 uid="uid://eppk4lx7a2do"]
 
 [ext_resource type="Script" uid="uid://bddpqd3qw50xa" path="res://width.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://c0traimsbgkbd" path="res://game.gd" id="1_mfdv2"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://coovvbc2pccxx" path="res://gear.png" id="19_qhcbd"]
 [ext_resource type="PackedScene" uid="uid://hy32k65emhpv" path="res://frame.tscn" id="19_vaj68"]
 [ext_resource type="Script" uid="uid://c3oxaf3cfunyb" path="res://settings_button.gd" id="20_f1jbl"]
+[ext_resource type="Script" uid="uid://c4e1iy1veiyk4" path="res://game_over_screen.gd" id="27_xa8c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vaj68"]
 size = Vector2(368, 1320)
@@ -121,6 +122,134 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_vaj68"),
 &"eat": SubResource("Animation_i2p71")
+}
+
+[sub_resource type="Gradient" id="Gradient_w48qg"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_36jdj"]
+gradient = SubResource("Gradient_w48qg")
+width = 1
+
+[sub_resource type="Animation" id="Animation_xa8c5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/GameOverLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(411, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/GameOverLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(130, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fade:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bnpwn"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5b14r"]
+resource_name = "game_over"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/GameOverLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(411, 0, 0, 0.16666667, 0, 411, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/GameOverLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 2),
+"points": PackedFloat32Array(-234, 0, 0, 0.3, 2, 129, -0.027763546, -1, 0.024487555, -1, 26, -0.14217907, 2, 0.13890314, 2, 130, 0, 0, 0.0060842037, 0),
+"times": PackedFloat32Array(0, 0.5, 0.76666665, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnpwn"]
+_data = {
+&"RESET": SubResource("Animation_xa8c5"),
+&"fade_out": SubResource("Animation_bnpwn"),
+&"game_over": SubResource("Animation_5b14r")
+}
+
+[sub_resource type="Animation" id="Animation_36jdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xfvwf"]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhpj7"]
+_data = {
+&"RESET": SubResource("Animation_36jdj"),
+&"start": SubResource("Animation_xfvwf")
 }
 
 [node name="Game" type="Node2D"]
@@ -417,6 +546,108 @@ script = ExtResource("20_f1jbl")
 [node name="Frame" parent="GameHUD/UI/Settings" instance=ExtResource("19_vaj68")]
 layout_mode = 0
 
+[node name="Fade" type="TextureRect" parent="GameHUD"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_36jdj")
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("27_xa8c5")
+
+[node name="BG" type="PanelContainer" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="GameOver"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="GameOver/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -194.0
+offset_right = 165.0
+offset_bottom = -92.999695
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+
+[node name="Restart" type="Button" parent="GameOver/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -14.5
+offset_right = 31.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Try Again"
+
+[node name="BackToMenu" type="Button" parent="GameOver/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = 34.0
+offset_right = 42.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back to Menu"
+
+[node name="Fade" type="TextureRect" parent="GameOver"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_36jdj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver"]
+libraries = {
+&"": SubResource("AnimationLibrary_bnpwn")
+}
+
+[node name="Fade" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_36jdj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dhpj7")
+}
+
 [connection signal="body_entered" from="LeftSide" to="LeftSide" method="_on_body_entered"]
 [connection signal="body_entered" from="BounceWall" to="BounceWall" method="_on_body_entered"]
 [connection signal="body_entered" from="Roof" to="Roof" method="_on_body_entered"]
@@ -425,3 +656,5 @@ layout_mode = 0
 [connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
 [connection signal="body_entered" from="SnailLimit/Snail" to="SnailLimit/Snail" method="_on_body_entered"]
 [connection signal="pressed" from="GameHUD/UI/Settings" to="GameHUD/UI/Settings" method="_on_pressed"]
+[connection signal="pressed" from="GameOver/Control/Restart" to="GameOver" method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/Control/BackToMenu" to="GameOver" method="_on_back_to_menu_pressed"]
