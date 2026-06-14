@@ -623,6 +623,30 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Back to Menu"
 
+[node name="Score" type="Label" parent="GameOver/Control"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 308.0
+offset_right = 262.0
+offset_bottom = 329.0
+text = "Score: "
+
+[node name="Served" type="Label" parent="GameOver/Control"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 345.0
+offset_right = 258.0
+offset_bottom = 366.0
+text = "Customers Served: "
+
+[node name="Time" type="Label" parent="GameOver/Control"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 388.0
+offset_right = 260.0
+offset_bottom = 409.0
+text = "Time: "
+
 [node name="Fade" type="TextureRect" parent="GameOver"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(1920, 1080)
