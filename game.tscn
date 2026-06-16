@@ -166,6 +166,65 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.16078432, 0.16078432, 0.16078432, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Score:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Served:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/Time:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Restart:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_bnpwn"]
 resource_name = "fade_out"
@@ -185,6 +244,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5b14r"]
 resource_name = "game_over"
+length = 5.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -192,9 +252,9 @@ tracks/0/path = NodePath("Control/GameOverLabel:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(411, 0, 0, 0.16666667, 0, 411, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"times": PackedFloat32Array(3, 3.6333334)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -203,9 +263,79 @@ tracks/1/path = NodePath("Control/GameOverLabel:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 0, 0, 2),
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(-234, 0, 0, 0.3, 2, 129, -0.027763546, -1, 0.024487555, -1, 26, -0.14217907, 2, 0.13890314, 2, 130, 0, 0, 0.0060842037, 0),
-"times": PackedFloat32Array(0, 0.5, 0.76666665, 1)
+"times": PackedFloat32Array(3, 3.3, 3.4666667, 3.6333334)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.0333333, 2.39),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.16078432, 0.16078432, 0.16078432, 0), Color(0.16078432, 0.16078432, 0.16078432, 0.6862745)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Score:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Served:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Time:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/Restart:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1229, 0, 0, 0, -100, 544.9995, -0.53226167, 14.714667, 0.32553196, -8.999512),
+"times": PackedFloat32Array(4.4, 4.9)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/BackToMenu:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1229, 0, 0, 0, -100, 544.9995, -0.53226167, 14.714667, 0.32553196, -8.999512),
+"times": PackedFloat32Array(4.5, 5)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnpwn"]
@@ -560,7 +690,8 @@ texture = SubResource("GradientTexture1D_36jdj")
 visible = false
 script = ExtResource("27_xa8c5")
 
-[node name="BG" type="PanelContainer" parent="GameOver"]
+[node name="BG" type="TextureRect" parent="GameOver"]
+modulate = Color(0.16078432, 0.16078432, 0.16078432, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -568,6 +699,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = SubResource("GradientTexture1D_36jdj")
 
 [node name="Control" type="Control" parent="GameOver"]
 layout_mode = 3
@@ -600,9 +732,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -31.0
+offset_left = -576.0
 offset_top = -14.5
-offset_right = 31.0
+offset_right = -513.9988
 offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -615,15 +747,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.5
-offset_top = 34.0
-offset_right = 42.5
-offset_bottom = 63.0
+offset_left = -31.000488
+offset_top = 35.0
+offset_right = 54.000854
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Back to Menu"
 
 [node name="Score" type="Label" parent="GameOver/Control"]
+visible = false
 layout_mode = 0
 offset_left = 222.0
 offset_top = 308.0
@@ -632,6 +765,7 @@ offset_bottom = 329.0
 text = "Score: "
 
 [node name="Served" type="Label" parent="GameOver/Control"]
+visible = false
 layout_mode = 0
 offset_left = 153.0
 offset_top = 345.0
@@ -640,6 +774,7 @@ offset_bottom = 366.0
 text = "Customers Served: "
 
 [node name="Time" type="Label" parent="GameOver/Control"]
+visible = false
 layout_mode = 0
 offset_left = 220.0
 offset_top = 388.0
