@@ -96,6 +96,7 @@ layout_mode = 2
 
 [node name="Control" type="Control" parent="UI/Settings"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Close" type="TextureButton" parent="UI/Settings/Control"]
 layout_mode = 0
